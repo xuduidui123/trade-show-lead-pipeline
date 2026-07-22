@@ -24,31 +24,30 @@
 
 ## 你需要准备什么
 
-1. **Claude 桌面版**（Cowork 模式）。付费订阅，运行时消耗对话额度。
+1. **一个能读文件、能联网搜索的 AI 助手**。本工具的核心是一份写给 AI 看的说明书（`SKILL.md`），任何有文件访问和联网能力的 AI Agent 都能照着执行——例如 Claude（Cowork）、Codex、Kimi、WorkBuddy 等。把说明书交给你手头的 AI 即可（见下方"安装"）。
 2. **一个文件夹**，放名片照片和产出的表格。
 3. **公司资料**：公司介绍、产品资料、你们写得好的开发信（有几封拿到过回复的最好）。散乱没关系，AI 会帮你整理。
 
-不需要写代码，不需要装 Python，不需要注册任何 API。
+不需要写代码，不需要注册任何 API。（背调和建表用到联网与 Python，主流 AI Agent 都自带这些能力。）
 
 ---
 
 ## 安装
 
-**方式一：克隆仓库（推荐）**
+先把仓库拿到本地：
 
 ```bash
-git clone https://github.com/你的用户名/trade-show-lead-pipeline.git
+git clone https://github.com/xuduidui123/trade-show-lead-pipeline.git
 ```
 
-克隆下来后，仓库里的 `trade-show-lead-pipeline/` 文件夹就是可以直接安装的 Skill。
-打开 Claude 桌面版 → 设置 → Capabilities → 添加 Skill，选中这个文件夹即可。
+（不用命令的话，在仓库网页点绿色 "Code" → "Download ZIP" 下载解压也一样。）
 
-**方式二：只下载安装包**
+核心就是里面的 `trade-show-lead-pipeline/` 文件夹——它是一份纯文本说明书 `SKILL.md` 加两个脚本。让你的 AI 助手读到它即可，按你用的工具选一种：
 
-不想克隆整个仓库的话，直接下载仓库里的 `trade-show-lead-pipeline.skill` 文件，
-在 Cowork 会话里发给 Claude，点卡片上的 "Save skill" 按钮安装。
+- **Claude（Cowork / 桌面版）**：设置 → Capabilities → 添加 Skill，选中 `trade-show-lead-pipeline/` 文件夹；或把仓库里的 `trade-show-lead-pipeline.skill` 发给它，点 "Save skill"。
+- **Codex / Kimi / WorkBuddy 等其他 AI Agent**：在你的工作文件夹里放上 `SKILL.md`，或对话开始时让 AI 先读这个文件，然后按 SKILL.md 里的触发词（如"处理新名片"）使用。不同工具的"加载说明书"方式略有差别，核心都是让 AI 能读到 `SKILL.md`。
 
-> 两种方式装的是同一个 Skill，`.skill` 只是把文件夹打包成了一个文件，随便选一种。
+> `.skill` 文件只是把 `trade-show-lead-pipeline/` 文件夹打包成的一个压缩文件，方便 Claude 一键安装；用其他工具时直接用文件夹里的 `SKILL.md` 即可，两者内容相同。
 
 ---
 
@@ -56,7 +55,7 @@ git clone https://github.com/你的用户名/trade-show-lead-pipeline.git
 
 **第 1 步：建工作文件夹**
 
-新建一个文件夹（比如叫"客户开发工作流"），在 Claude 里选择这个文件夹，然后说：
+新建一个文件夹（比如叫"客户开发工作流"），让你的 AI 助手访问这个文件夹，然后说：
 
 > 初始化工作文件夹
 
@@ -96,7 +95,7 @@ AI 会读完所有素材，提炼成两份正式文档：`公司介绍.md`（你
 
    也可以展会现场直接把要点手写在名片上再拍照，AI 一样能读。**这一步是开发信个性化的最大弹药，写得越具体，信越像人写的。**
 3. **关掉客户表.xlsx**（开着会写入失败）。
-4. 对 Claude 说：`处理新名片`
+4. 对你的 AI 助手说：`处理新名片`
 5. 打开表格核对，复制开发信发送。
 
 其他能说的话：`只做背调`、`只写开发信`、`重写第3行的开发信`、`整理知识库`。
@@ -128,7 +127,7 @@ AI 会犯错，这几处必须人工过一遍：
 八成是知识库太单薄，或者没写交谈要点。补充这两处后重跑，效果差别很大。
 
 **Excel 打开提示"内容有问题，是否恢复"**
-表格结构被改坏了。跟 Claude 说这个报错，它会重建一张干净的表并保留数据。
+表格结构被改坏了。跟 AI 说这个报错，它会重建一张干净的表并保留数据。
 
 **背调查不到公司信息**
 小公司没官网很正常，工具会如实标注并改用通用版开发信。这不是 bug。
